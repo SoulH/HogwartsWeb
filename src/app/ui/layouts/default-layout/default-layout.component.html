@@ -1,1 +1,17 @@
-<p>default-layout works!</p>
+<div gdColumns="64px auto 200px" gdRows="auto auto">
+    <img src="assets/logos/hogwarts" gdRow="1" gdColumn="1">
+    <div gdRows="1" gdColumns="2">Hogwarts</div>
+    <div fxLayout fxLayoutAlign="center center" gdRow="2" gdColumn="2">
+        <a href="">Personajes</a>
+        <a href="">Estudiantes</a>
+        <a href="">Profesores</a>
+    </div>
+    <mat-form-field appearance="fill" gdRow="2" gdColumn="3">
+        <mat-label>Selecciona tu casa</mat-label>
+        <select *ngFor="let house of houses" [value]="house">
+          <option [value]="house">{{house.name}}</option>
+        </select>
+        <mat-hint>{{house.phrase}}</mat-hint>
+      </mat-form-field>
+</div>
+<ng-content></ng-content>

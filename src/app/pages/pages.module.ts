@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
-
+import { UiModule } from '../ui/ui.module';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     HomePageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    UiModule
   ]
 })
 export class PagesModule { }
