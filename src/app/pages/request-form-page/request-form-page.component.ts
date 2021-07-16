@@ -22,6 +22,7 @@ export class RequestFormPageComponent implements OnInit {
 
   private setForm(data?: RegistrationModel) {
     return new FormGroup({
+      'id': new FormControl(data?.id),
       'name': new FormControl(data?.name, Validators.compose([Validators.required, Validators.maxLength(20)])),
       'lastname': new FormControl(data?.lastname, Validators.compose([Validators.required, Validators.maxLength(20)])),
       'identification': new FormControl(data?.identification, Validators.compose([Validators.required, Validators.min(1), Validators.max(9999999999)])),
@@ -32,19 +33,23 @@ export class RequestFormPageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('id', id);
+    if (!id) return;
+    this.enrollment.get(parseInt(id)).subscribe(res => {
+      this.form = this.setForm(res);
+    });
+    
   }
 
   public async save() {
     const data = this.form.value;
     const all = await this.enrollment.getAll().toPromise();
     const prev = all.find(f => f.identification == data.identification);
-    if (prev) {
+    if (prev && !data.id) {
       alert("Ya existe un registro con esta identificacion");
       return;
     }
-    const key = await this.enrollment.add(data).toPromise();
-    alert(`registro completado con id: ${key}`);
+    await this.enrollment.set(data).toPromise();
+    alert("Cambios Realizados");
     location.pathname = "requests";
   }
 

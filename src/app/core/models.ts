@@ -1,4 +1,5 @@
 export interface RegistrationModel {
+    id?: number;
     name: string;
     lastname: string;
     age: number;

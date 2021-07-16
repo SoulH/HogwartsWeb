@@ -1,3 +1,4 @@
+import { ResourceLoader } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -19,19 +20,35 @@ export class RequestPageComponent implements OnInit {
     "name",
     "lastname",
     "age",
-    "house"
+    "house",
+    "actions"
   ];
   
   constructor(private enrollment: EnrollmentService) {
+    this.reload();
+  }
+
+  ngOnInit(): void {
+  }
+
+  public reload() {
     this.enrollment.getAll().subscribe(res => {
       console.log('res', res);
       this.ds = new MatTableDataSource<any>(res);
       this.ds.paginator = this.paginator;
       this.ds.sort = this.sort;
-    })
+    });
   }
 
-  ngOnInit(): void {
+  public edit(element: RegistrationModel) {
+    location.pathname = `request/form/${element.id}`;
+  }
+
+  public async delete(element: RegistrationModel) {
+    const key = <number>element.id;
+    await this.enrollment.delete(key).toPromise();
+    alert("Registro Eliminado");
+    this.reload();
   }
 
 }
