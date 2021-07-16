@@ -1,0 +1,69 @@
+<hw-default-layout>
+    <mat-card style="margin: 30px 50px; padding: 30px; background-color: #ccc;">
+        <div fxLayout fxLayoutAlign="space-between center">
+            <h3>Formulario de solicitud</h3>
+            <button mat-raised-button (click)="save()" [disabled]="form.invalid" matTooltip="Guardar">
+                <mat-icon color="accent">save</mat-icon>
+            </button>
+        </div>
+        <br><br>
+        <form fxLayout="column" fxLayoutAlign="left" [formGroup]="form" 
+              style="padding: 30px; background-color: white;">
+            <mat-form-field style="max-width: 300px;">
+                <mat-label>Nombre:</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="form.get('name')?.errors?.required">
+                    * Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('name')?.errors?.maxlength">
+                    * Máximo 20 carácteres
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="max-width: 300px;">
+                <mat-label>Apellido:</mat-label>
+                <input matInput formControlName="lastname">
+                <mat-error *ngIf="form.get('lastname')?.errors?.required">
+                    * Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('lastname')?.errors?.maxlength">
+                    * Máximo 20 carácteres
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="max-width: 300px;">
+                <mat-label>Identificaión:</mat-label>
+                <input type="number" min="1" matInput formControlName="identification">
+                <mat-error *ngIf="form.get('identification')?.errors?.required">
+                    * Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('identification')?.errors?.min">
+                    * Mínimo 1
+                </mat-error>
+                <mat-error *ngIf="form.get('identification')?.errors?.max">
+                    * Máximo 10 dígitos
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="max-width: 150px;">
+                <mat-label>Edad:</mat-label>
+                <input type="number" min="1" matInput formControlName="age">
+                <mat-error *ngIf="form.get('age')?.errors?.required">
+                    * Requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('age')?.errors?.min">
+                    * Mínimo 8 años
+                </mat-error>
+                <mat-error *ngIf="form.get('age')?.errors?.max">
+                    * Máximo 99 años
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 300px;">
+                <mat-label>Selecciona la casa</mat-label>
+                <mat-select formControlName="house" style="padding: 0;">
+                  <mat-option *ngFor="let h of houses" [value]="h">{{h}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('house')?.errors?.required">
+                    * Requerido
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card>    
+</hw-default-layout>

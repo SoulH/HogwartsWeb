@@ -1,0 +1,16 @@
+<hw-default-layout>
+    <mat-card style="margin: 30px 50px; padding: 30px; background-color: #ccc;">
+        <div fxLayout fxLayoutAlign="space-between center">
+            <h3>Personajes</h3>
+            <mat-form-field style="width: 250px;">
+                <mat-label>Selecciona la casa</mat-label>
+                <mat-select (selectionChange)="reload($event)" [(value)]="house" style="padding: 0;">
+                  <mat-option *ngFor="let h of houses" [value]="h">{{h.name}}</mat-option>
+                </mat-select>
+                <mat-hint>{{house.phrase}}</mat-hint>
+            </mat-form-field>
+        </div>
+        <br><br>
+        <hw-people-table [data]="characters"></hw-people-table>
+    </mat-card>
+</hw-default-layout>

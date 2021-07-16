@@ -48,11 +48,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PeopleTableComponent } from './tables/people-table/people-table.component';
 
 
 @NgModule({
   declarations: [
-    DefaultLayoutComponent
+    DefaultLayoutComponent,
+    PeopleTableComponent
   ],
   imports: [
     CommonModule,
@@ -143,7 +145,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ScrollingModule,
     MatFormFieldModule,
     // ui
-    DefaultLayoutComponent
+    DefaultLayoutComponent,
+    PeopleTableComponent
   ]
 })
 export class UiModule { }

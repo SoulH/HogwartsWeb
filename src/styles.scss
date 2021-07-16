@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "hw-theme.scss";
+@include mat-core();
+@include angular-material-theme($hw-theme);
+
+
+body {
+    background-color: #571a17;
+    //background-color: #303030;
+    //background-image: url("assets/backgrounds/old-paper.jpg");
+    //background-repeat: repeat;
+    //background-position: cover;
+    padding: 0;
+    margin: 0;
+}
+
+#def-header {
+    background-image: url("assets/wallpapers/hogwarts_1.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 20px;
+}
